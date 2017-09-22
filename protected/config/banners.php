@@ -1,2 +1,2 @@
-<? return array (
+<?php return array (
 ); 

@@ -2,7 +2,7 @@
 header("Content-Type: text/html; charset=UTF-8");
 
 // Path to Yii framework
-$yii = dirname(__FILE__) . '/framework/yii.php';
+$yii = dirname(__FILE__) . '/../yii/framework/yii.php';
 // Path to config folder
 define("BASEPATH",dirname(__FILE__) . '/protected/');
 

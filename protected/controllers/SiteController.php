@@ -4,7 +4,6 @@
  * Контролер сайта включающий отдельные возможности 
  * Процедура установки 
  * Форма контактов 
- * Вывод дополнительных поляй для категории actionGetfields 
  */
 class SiteController extends Controller {
 
@@ -62,30 +61,10 @@ class SiteController extends Controller {
         );
     }
 
-    /**
-     * Получения списка дополнительных полей для категории 
-     * используется при созданий объявления
-     * @param type $cat_id Id категории 
-     */
-    public function actionGetfields($cat_id) {
-        $model = Category::model()->findByPk($cat_id);
-
-        $fields = json_decode($model->fields);
-
-        if (sizeof($fields) > 0) {
-            foreach ($fields as $f_iden => $fv) {
-                ?><div class="controls">
-                    <label for='Fields[<?= $f_iden ?>]'><?= $fv->name ?></label>
-                    <input type="text" id="Fields[<?= $f_iden ?>]" name="Fields[<?= $f_iden ?>]" >
-                </div><?
-            }
-        }
-    }
-
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform actions
-                'actions' => array('index', 'error', 'contact', 'bulletin', 'category', 'captcha', 'page', 'advertisement', 'getfields', 'search'),
+                'actions' => array('index', 'error', 'contact', 'bulletin', 'category', 'captcha', 'page', 'advertisement', 'search'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user
@@ -217,7 +196,7 @@ short_open_tag option must be enabled in the php.ini or another method available
                         $config_array_str = var_export($config_data, true);
                         $config_array_str = str_replace("'params' => 'require',", "'params' => require 'settings.php',", $config_array_str);
                         //Сохранение конфигурации 
-                        file_put_contents($CONFIG, "<? return " . $config_array_str . " ?>");
+                        file_put_contents($CONFIG, "<?php return " . $config_array_str . " ?>");
 
                         // Сохранение настроек
                         $settings = new ConfigForm(Yii::getPathOfAlias('application.config.settings') . ".php");

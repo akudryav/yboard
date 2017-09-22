@@ -145,7 +145,7 @@ var sh = {
 		xmlComments					: /(&lt;|<)!--[\s\S]*?--(&gt;|>)/gm,
 		url							: /&lt;\w+:\/\/[\w-.\/?%&=@:;]*&gt;|\w+:\/\/[\w-.\/?%&=@:;]*/g,
 		
-		/** <?= ?> tags. */
+		/** <?php echo  ?> tags. */
 		phpScriptTags 				: { left: /(&lt;|<)\?=?/g, right: /\?(&gt;|>)/g },
 		
 		/** <%= %> tags. */

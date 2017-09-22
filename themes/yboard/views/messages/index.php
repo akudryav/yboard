@@ -13,7 +13,7 @@ $this->menu=array(
 
 ?>
 
-<h4><?=t('Messages')?></h4>
+<h4><?php echo t('Messages')?></h4>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

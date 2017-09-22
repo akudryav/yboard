@@ -14,10 +14,10 @@ foreach( Yii::app()->params['categories'] as $cat) {
         if($ic == 0) { ?>
            <table class="main-cats" cellspacing='10'>
                <tbody> <tr>
-        <? }
+        <?php }
         if($ic % 3 == 0) { ?>
                    </tr> 
-        <? }
+        <?php }
                 
         echo "<td><div>".CHtml::link("<img src='".Yii::app()->theme->baseUrl."/images/category/".$cat['icon']."' /><span>".$cat['name']."</span>", array('/adverts/category', 'cat_id' => $cat['id']))."</div></td>";
                

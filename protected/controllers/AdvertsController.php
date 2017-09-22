@@ -104,40 +104,18 @@ class AdvertsController extends Controller {
         // Проверка есть ли дочерние 
         if ($model->lft + 1 == $model->rgt) {
 
-            echo "<div id='fields_list'>";
             $fields = json_decode($model->fields);
 
-            if (sizeof($fields) > 0)
-                foreach ($fields as $f_iden => $fv) {
-                    ?>
-                    <div class="controls">
-                        <label for='Fields[<?= $f_iden ?>]'><?= $fv->name ?></label>
-                        <? if ($fv->type == 1) { ?>
-                            <input type="checkbox" id="Fields[<?= $f_iden ?>]" name="Fields[<?= $f_iden ?>]" <? ($fv->atr ? "checked='checked'" : "") ?> >
-                            <?
-                        } elseif ($fv->type == 2) {
-                            echo CHtml::dropDownList("Fields[" . $f_iden . "]", array()
-                                    , explode(",", $fv->atr));
-                        } else {
-                            ?>
-                            <input type="text" id="Fields[<?= $f_iden ?>]" name="Fields[<?= $f_iden ?>]" >
-                        <? } ?>
-                    </div>	
+            $this->renderPartial('getfields1', array(
+                'cat_id' => $cat_id,
+                'fields' => $fields,
+            ));
 
-                    <?
-                }
-
-            echo "</div>";
-
-            echo '<input type="hidden" class="error" value="' . $cat_id . '" '
-            . 'id="Adverts_category_id" name="Adverts[category_id]">';
         } else {
             // Вывод дочерних категории
             $subcat = Yii::app()->db->createCommand('select id,name  from category  '
                             . 'where root=' . $model->root . ' and lft>' . $model->lft . ' '
                             . 'and rgt<' . $model->rgt . ' and level=' . ($model->level + 1) . ' ')->query();
-
-
 
             $drop_cats = array();
 
@@ -146,9 +124,11 @@ class AdvertsController extends Controller {
                 $drop_cats[$cat['id']] = $cat['name'];
             };
 
-            echo CHtml::dropDownList('subcat_' . $cat_id, 0, $drop_cats, array('empty' => t('Choose category'), 'onchange' => 'loadFields(this)'));
+            $this->renderPartial('getfields2', array(
+                'cat_id' => $cat_id,
+                'drop_cats' => $drop_cats,
+            ));
 
-            return;
         }
     }
 
@@ -259,11 +239,13 @@ class AdvertsController extends Controller {
         // Модель для моментального сообщения со страницы просмотра объявления
         $mes_model = new Messages();
         $model = $this->loadAdverts($id);
+
         $model->views++;
+
         $model->disableBehavior('CTimestampBehavior');
         $model->save();
         $model->fields = unserialize($model->fields);
-        
+       
         $this->meta = Yii::app()->params['adv_meta'];
         $this->meta['vars']['cat_name'] = 
                 Yii::app()->params['categories'][$model->category_id]['name'];

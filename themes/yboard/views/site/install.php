@@ -18,7 +18,7 @@
 <h1> Установка Ybord </h1>
 
 <?php echo $form->errorSummary($model); ?>
-<p style='color:#ff0000; padding:15px; '><?=$db_error?></p>
+<p style='color:#ff0000; padding:15px; '><?php echo $db_error?></p>
 
 
 <fieldset>

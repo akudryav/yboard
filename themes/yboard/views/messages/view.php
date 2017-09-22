@@ -16,12 +16,12 @@ $this->menu=array(
 );
 ?>
 
-<div> <?=t('View Messages')?> <?php echo $model->id; ?></div>
+<div> <?php echo t('View Messages')?> <?php echo $model->id; ?></div>
 
 <div style='border:1px solid #ccc; border-radius: 5px; padding:5px; '>
-    <div> <?=$model->sender->username?>:   </div>
-    <div style='padding:20px;'> <?=$model->message?>  </div>
-    <div style='text-align:right; font-size:10px; font-style:italic; '> <?=$model->send_date?> </div>
+    <div> <?php echo $model->sender->username?>:   </div>
+    <div style='padding:20px;'> <?php echo $model->message?>  </div>
+    <div style='text-align:right; font-size:10px; font-style:italic; '> <?php echo $model->send_date?> </div>
 </div>
 
 <?php 
