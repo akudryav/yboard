@@ -25,9 +25,6 @@ class advancedSearch extends CWidget {
             $curent_cat = false;
         }
 
-
-
-        //echo "<form action='" . Yii::app()->createUrl("/adverts/search") . "'>";
         // Проверка есть ли дочерние 
         if ($curent_cat['lft'] + 1 != $curent_cat['rgt'] or $curent_cat===false) {
             if($curent_cat) {

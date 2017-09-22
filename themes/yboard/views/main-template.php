@@ -18,17 +18,13 @@
 
     <body>
 
-        <?
-        //echo CHtml::link("Ожидает", array("/admin/adverts/update", "id" => $data->id ), array("target"=>"_blank")  );
-        ?>
-
         <div id='header'>
             <div id="topheader">
                 <a href='<?php echo  Yii::app()->createUrl("/") ?>' class="logo">Доска объявлений на Yii</a>
                 <div class="menu_area">
                     <div class='ideas'>
-                        <a href="<?php echo  Yii::app()->createUrl("/adverts") ?>" class="general">Объявления</a> 
-                        <a href='<?php echo  Yii::app()->createUrl("/adverts/create") ?>' class="menu_text">
+                        <a href='<?php echo  Yii::app()->createUrl("/adverts") ?>' class='general'>Объявления</a> 
+                        <a href='<?php echo  Yii::app()->createUrl("/adverts/create") ?>' class='menu_text'>
                             <i class='fa fa-plus'></i>добавить
                         </a>
                     </div>

@@ -7,9 +7,13 @@
  */
 
 ?>
-<?php $model= $data->gallery->galleryPhotos[0]; ?>
+<?php $model = $data->gallery->galleryPhotos[0]; 
+if(!empty($model)):
+?>
 <a href="<?php echo  Yii::app()->createUrl('adverts/view', 
                     array('id' => $data->id)) ?>" class="fancybox" rel="<?php echo CHtml::encode($data->id) ?>">
-<img src="<?php echo $model->getPreview(); ?>" 
+                    
+<img src="aaa<?php echo $model->getPreview(); ?>" 
                          style='max-width:95px; max-height:60px;' alt="<?php echo CHtml::encode($data->name) ?>" />
 </a>
+<?php endif;?>
